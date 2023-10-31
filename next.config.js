@@ -4,7 +4,7 @@ const nextConfig = {
         remotePatterns:[
             {
                 protocol: "https",
-                hostname: "uploadthing.com",
+                hostname: "utfs.io",
             }
         ]
     }
