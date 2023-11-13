@@ -22,4 +22,6 @@ export const initailProfile = async () => {
       email: user.emailAddresses[0].emailAddress,
     },
   });
+
+  return newProfile;
 };
