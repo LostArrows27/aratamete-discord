@@ -10,57 +10,50 @@ import "@uploadthing/react/styles.css";
 interface FileUploadProps {
   onChange: (url?: string) => void;
   value: string;
-  endpoint: "messageFile" | "serverImage"
+  endpoint: "messageFile" | "serverImage";
 }
 
-export const FileUpload = ({
-  onChange,
-  value,
-  endpoint
-}: FileUploadProps) => {
+export const FileUpload = ({ onChange, value, endpoint }: FileUploadProps) => {
   const fileType = value?.split(".").pop();
+
+  console.log(value);
 
   if (value && fileType !== "pdf") {
     return (
-      <div className="relative h-20 w-20">
-        <Image
-          fill
-          src={value}
-          alt="Upload"
-          className="rounded-full"
-        />
+      <div className="relative w-20 h-20">
+        <Image fill src={value} alt="Upload" className="rounded-full" />
         <button
           onClick={() => onChange("")}
-          className="bg-rose-500 text-white p-1 rounded-full absolute top-0 right-0 shadow-sm"
+          className="bg-rose-500 absolute top-0 right-0 p-1 text-white rounded-full shadow-sm"
           type="button"
         >
-          <X className="h-4 w-4" />
+          <X className="w-4 h-4" />
         </button>
       </div>
-    )
+    );
   }
 
   if (value && fileType === "pdf") {
     return (
-      <div className="relative flex items-center p-2 mt-2 rounded-md bg-background/10">
-        <FileIcon className="h-10 w-10 fill-indigo-200 stroke-indigo-400" />
-        <a 
+      <div className="bg-background/10 relative flex items-center p-2 mt-2 rounded-md">
+        <FileIcon className="fill-indigo-200 stroke-indigo-400 w-10 h-10" />
+        <a
           href={value}
           target="_blank"
           rel="noopener noreferrer"
-          className="ml-2 text-sm text-indigo-500 dark:text-indigo-400 hover:underline"
+          className="dark:text-indigo-400 hover:underline ml-2 text-sm text-indigo-500"
         >
           {value}
         </a>
         <button
           onClick={() => onChange("")}
-          className="bg-rose-500 text-white p-1 rounded-full absolute -top-2 -right-2 shadow-sm"
+          className="bg-rose-500 -top-2 -right-2 absolute p-1 text-white rounded-full shadow-sm"
           type="button"
         >
-          <X className="h-4 w-4" />
+          <X className="w-4 h-4" />
         </button>
       </div>
-    )
+    );
   }
 
   return (
@@ -73,5 +66,5 @@ export const FileUpload = ({
         console.log(error);
       }}
     />
-  )
-}
+  );
+};
