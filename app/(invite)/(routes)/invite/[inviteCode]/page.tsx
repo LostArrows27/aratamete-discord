@@ -1,0 +1,62 @@
+import { currentProfile } from "@/lib/current-profile";
+import { db } from "@/lib/db";
+import { redirectToSignIn } from "@clerk/nextjs";
+import { redirect } from "next/navigation";
+
+type InvitePageProps = {
+  params: {
+    inviteCode: string;
+  };
+};
+
+const InvitePage = async ({ params }: InvitePageProps) => {
+  const profile = await currentProfile();
+
+  if (!profile) {
+    return redirectToSignIn();
+  }
+
+  if (!params.inviteCode) {
+    return redirect("/");
+  }
+
+  const exisitingServer = await db.server.findFirst({
+    where: {
+      inviteCode: params.inviteCode,
+      members: {
+        some: {
+          profileID: profile.id,
+        },
+      },
+    },
+  });
+
+  console.log(exisitingServer);
+
+  if (exisitingServer) {
+    return redirect(`/servers/${exisitingServer.id}`);
+  }
+
+  const server = await db.server.update({
+    where: {
+      inviteCode: params.inviteCode,
+    },
+    data: {
+      members: {
+        create: [
+          {
+            profileID: profile.id,
+          },
+        ],
+      },
+    },
+  });
+
+  if (server) {
+    return redirect(`/servers/${server.id}`);
+  }
+
+  return null;
+};
+
+export default InvitePage;
