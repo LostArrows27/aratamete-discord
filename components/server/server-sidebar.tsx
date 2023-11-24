@@ -9,6 +9,7 @@ import { Separator } from "../ui/separator";
 import ServerSection from "./server-section";
 import { channel } from "diagnostics_channel";
 import ServerChannel from "./server-channel";
+import ServerMember from "./server-member";
 
 type ServerSidebarProps = {
   serverID: string;
@@ -138,13 +139,69 @@ const ServerSidebar = async ({ serverID, profile }: ServerSidebarProps) => {
               role={userRole}
               label="Text Channels"
             />
-            {textChannel?.map((channel, index) => (
-              <ServerChannel
-                server={server}
-                channel={channel}
-                role={userRole}
-                key={index}
-              />
+
+            <div className="space-y-[2px]">
+              {textChannel?.map((channel, index) => (
+                <ServerChannel
+                  server={server}
+                  channel={channel}
+                  role={userRole}
+                  key={index}
+                />
+              ))}
+            </div>
+          </div>
+        )}
+        {!!voiceChannel?.length && (
+          <div className="mb-2">
+            <ServerSection
+              sectionType="channel"
+              channelType={ChannelType.AUDIO}
+              role={userRole}
+              label="Voice Channels"
+            />
+            <div className="space-y-[2px]">
+              {voiceChannel?.map((channel, index) => (
+                <ServerChannel
+                  server={server}
+                  channel={channel}
+                  role={userRole}
+                  key={index}
+                />
+              ))}
+            </div>
+          </div>
+        )}
+        {!!videoChannel?.length && (
+          <div className="mb-2">
+            <ServerSection
+              sectionType="channel"
+              channelType={ChannelType.VIDEO}
+              role={userRole}
+              label="Video Channels"
+            />
+            <div className="space-y-[2px]">
+              {videoChannel?.map((channel, index) => (
+                <ServerChannel
+                  server={server}
+                  channel={channel}
+                  role={userRole}
+                  key={index}
+                />
+              ))}
+            </div>
+          </div>
+        )}
+        {!!member?.length && (
+          <div className="mb-2">
+            <ServerSection
+              sectionType="member"
+              role={userRole}
+              label="Members"
+              server={server}
+            />
+            {member?.map((person, index) => (
+              <ServerMember member={person} server={server} key={index} />
             ))}
           </div>
         )}

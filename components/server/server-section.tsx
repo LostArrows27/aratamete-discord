@@ -14,7 +14,7 @@ type ServerSectionProps = {
   server?: ServerWithMembersWithProfiles;
 };
 
-// server section is the label of the channel category : text, audio, video
+// server section is the label of the channel category : text, audio, video, member
 const ServerSection = ({
   label,
   role,
@@ -33,7 +33,7 @@ const ServerSection = ({
         <ActionTooltip label="Create Channel" side="top">
           <button
             onClick={() => {
-              onOpen("createChannel");
+              onOpen("createChannel", { channelType: channelType });
             }}
             className="text-zinc-500 hover:text-zinc-600 dark:text-zinc-400 dark:hover:text-zinc-300 transition"
           >
@@ -42,7 +42,7 @@ const ServerSection = ({
         </ActionTooltip>
       )}
       {role === MemberRole.ADMIN && sectionType === "member" && (
-        <ActionTooltip label="Invite Member" side="top">
+        <ActionTooltip label="Manage Members" side="top">
           <button
             onClick={() => {
               onOpen("members", { server });

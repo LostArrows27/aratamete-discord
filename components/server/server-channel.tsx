@@ -2,7 +2,7 @@
 
 import { cn } from "@/lib/utils";
 import { Channel, ChannelType, MemberRole, Server } from "@prisma/client";
-import { Edit, Hash, Mic, Trash, Video } from "lucide-react";
+import { Edit, Hash, Lock, Mic, Trash, Video } from "lucide-react";
 import { useParams, useRouter } from "next/navigation";
 import { ActionTooltip } from "../action-tooltip";
 
@@ -46,12 +46,17 @@ const ServerChannel = ({ channel, server, role }: ServerChannelProps) => {
       {channel.name !== "general" && role !== MemberRole.GUEST && (
         <div className="gap-x-2 flex items-center ml-auto">
           <ActionTooltip label="Edit">
-            <Edit className="group-hover:block text-zinc-500 hover:text-zinc-600 dark:text-zinc-400 dark:hover:text-zinc-300 w-4 h-4 transition"></Edit>
+            <Edit className="group-hover:block text-zinc-500 hover:text-zinc-600 dark:text-zinc-400 dark:hover:text-zinc-300 hidden w-4 h-4 transition"></Edit>
           </ActionTooltip>
           <ActionTooltip label="Delete">
-            <Trash className="group-hover:block text-zinc-500 hover:text-zinc-600 dark:text-zinc-400 dark:hover:text-zinc-300 w-4 h-4 transition"></Trash>
+            <Trash className="group-hover:block text-zinc-500 hover:text-zinc-600 dark:text-zinc-400 dark:hover:text-zinc-300 hidden w-4 h-4 transition"></Trash>
           </ActionTooltip>
         </div>
+      )}
+      {channel.name === "general" && (
+        <ActionTooltip label="General channel is locked">
+          <Lock className="text-zinc-500 dark:text-zinc-400 w-4 h-4 ml-auto"></Lock>
+        </ActionTooltip>
       )}
     </button>
   );
