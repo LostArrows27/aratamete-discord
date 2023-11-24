@@ -35,7 +35,7 @@ import {
   DropdownMenuTrigger,
   DropdownMenuSubTrigger,
 } from "@/components/ui/dropdown-menu";
-import { ServerWithMembersWithProfiles } from "@/type";
+import { ServerWithMembersWithProfiles } from "@/types/type";
 import qs from "query-string";
 import UserAvatar from "../user-avatar";
 
