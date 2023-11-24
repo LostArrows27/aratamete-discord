@@ -10,10 +10,10 @@ import ServerSection from "./server-section";
 import { channel } from "diagnostics_channel";
 import ServerChannel from "./server-channel";
 import ServerMember from "./server-member";
+import { currentProfile } from "@/lib/current-profile";
 
 type ServerSidebarProps = {
   serverID: string;
-  profile: Profile | null;
 };
 
 const iconMap = {
@@ -31,7 +31,9 @@ const roleIconMap = {
 };
 
 // Server channel inforamtion for a specific server
-const ServerSidebar = async ({ serverID, profile }: ServerSidebarProps) => {
+const ServerSidebar = async ({ serverID }: ServerSidebarProps) => {
+  const profile = await currentProfile();
+
   if (!profile) {
     return redirect("/");
   }
