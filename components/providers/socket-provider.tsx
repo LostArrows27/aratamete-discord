@@ -13,35 +13,41 @@ const SocketContext = createContext<SocketContextType>({
   isConnected: false,
 });
 
-export const useSocket = () => useContext(SocketContext);
+export const useSocket = () => {
+  return useContext(SocketContext);
+};
 
-export function SocketProvider({ children }: { children: React.ReactNode }) {
-  const [socket, setSocket] = useState<any>(null);
-  const [isConnected, setIsConnected] = useState<boolean>(false);
+export const SocketProvider = ({ children }: { children: React.ReactNode }) => {
+  const [socket, setSocket] = useState(null);
+  const [isConnected, setIsConnected] = useState(false);
+
   useEffect(() => {
-    const socketInstannce = new (ClientIO as any)(
+    const socketInstance = new (ClientIO as any)(
       process.env.NEXT_PUBLIC_SITE_URL!,
       {
         path: "/api/socket/io",
         addTrailingSlash: false,
       }
     );
-    socketInstannce.on("connect", () => {
+
+    socketInstance.on("connect", () => {
       setIsConnected(true);
     });
-    socketInstannce.on("disconnect", () => {
+
+    socketInstance.on("disconnect", () => {
       setIsConnected(false);
     });
 
-    setSocket(socketInstannce);
+    setSocket(socketInstance);
 
     return () => {
-      socketInstannce.disconnect();
+      socketInstance.disconnect();
     };
   }, []);
+
   return (
     <SocketContext.Provider value={{ socket, isConnected }}>
       {children}
     </SocketContext.Provider>
   );
-}
+};
