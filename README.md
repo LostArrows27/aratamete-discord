@@ -26,7 +26,7 @@
 
 ## Preview
 
-### You guys can view demo website at [https://aratamete-spotify.vercel.app/](https://aratamete-spotify.vercel.app/)
+### You guys can view demo website at [https://aratamete-discord.vercel.app/](https://aratamete-discord.vercel.app/)
 
 <div align="center">
     <img src = "https://github.com/LostArrows27/aratamete-discord/assets/97510841/13abb645-d7eb-4e0a-805e-936c836ad999">
