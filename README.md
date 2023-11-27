@@ -3,7 +3,7 @@
     <img src="https://github.com/LostArrows27/aratamete-discord/assets/97510841/a8913c40-96c3-4bce-b688-ac28903757dd" alt="Logo" width="220" height="220">
   </a>
   <h3>Aratamete Discord</h3>
-<div>A "simple" version of Discord</div>
+<div>A "minimal" version of Discord</div>
 </div>
 
 
