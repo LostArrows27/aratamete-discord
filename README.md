@@ -1,14 +1,16 @@
 <div align="center">
   <a href="https://github.com/LostArrows27/aratamete-spotify">
-    <img src="https://github.com/LostArrows27/aratamete-spotify/assets/97510841/82eb20f4-5e64-49c5-8917-d1c800b41cd5" alt="Logo" width="220" height="220">
+    <img src="https://github.com/LostArrows27/aratamete-discord/assets/97510841/a8913c40-96c3-4bce-b688-ac28903757dd" alt="Logo" width="220" height="220">
   </a>
   <h3>Aratamete Discord</h3>
-<div>A clone version of Discord</div>
+<div>A "simple" version of Discord</div>
 </div>
+
+
 
 ## About the project
 
-- This is a a chat application that allows users to communicate with each other via text, voice chat and video call.
+- This is a a SIMPLE chat application that allows users to communicate with each other via text, voice chat and video call.
 
 ## Members 
 
@@ -24,15 +26,34 @@
 
 ## Preview
 
-- You guys can view demo website at [https://aratamete-spotify.vercel.app/](https://aratamete-spotify.vercel.app/)
+### You guys can view demo website at [https://aratamete-spotify.vercel.app/](https://aratamete-spotify.vercel.app/)
 
 <div align="center">
-    <img src = "https://github.com/LostArrows27/LostArrows27/assets/97510841/3735f3bf-e9a3-476d-a0cf-5797375a2b9b">
+    <img src = "https://github.com/LostArrows27/aratamete-discord/assets/97510841/13abb645-d7eb-4e0a-805e-936c836ad999">
 </div>
+
+### Voice chat UI 
+
+<div align="center">
+<img alt="image" src="https://github.com/LostArrows27/aratamete-discord/assets/97510841/8b8e4820-a970-4a28-9ad0-4ae8e34a84f7">
+</div>
+
+
+### Video call UI
+
+<div align="center">
+  <img width="1280" alt="Screenshot 2023-11-27 154102" src="https://github.com/LostArrows27/aratamete-discord/assets/97510841/8c2a6ae7-eab4-4294-a0c1-1d7cd87f6c26">
+</div>
+
+  
 
 ## Features 
 
-
+- Login with Google, Discord or email using Clerk
+- Create server, manage server, member and channel
+- Chat group, chat directly with member
+- Voice chat, video call with other
+- Invite member to servers
 
 ## Set up and Local Development
 
