@@ -5,13 +5,14 @@ import axios from "axios";
 import qs from "query-string";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { Plus, Smile } from "lucide-react";
-import { useRouter } from "next/navigation";
+import { Plus, Smile, Trash } from "lucide-react";
+import { usePathname, useRouter } from "next/navigation";
 
 import { Form, FormControl, FormField, FormItem } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
 import { useModal } from "@/hooks/use-modal-store";
 import { EmojiPicker } from "../emoji-picker";
+import Router from "next/router";
 
 interface ChatInputProps {
   apiUrl: string;
@@ -27,7 +28,7 @@ const formSchema = z.object({
 export const ChatInput = ({ apiUrl, query, name, type }: ChatInputProps) => {
   const { onOpen } = useModal();
   const router = useRouter();
-
+  const pathname = usePathname();
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
     defaultValues: {
@@ -52,6 +53,29 @@ export const ChatInput = ({ apiUrl, query, name, type }: ChatInputProps) => {
       console.log(error);
     }
   };
+
+  const handleDeleteAllMessages = async () => {
+    try {
+      // const url = qs.stringifyUrl({
+      //   url: apiUrl,
+      //   query: {
+      //     ...query,
+      //     deleteAllMessages: true,
+      //   },
+      // });
+
+      await axios.delete("/api/delete-all-messages", {
+        params:{
+          channelId: query.channelId,
+          memberId: query.member.id,
+        }
+      });
+
+      location.reload();
+    } catch (error) {
+      console.log(error);
+    }
+  }
 
   return (
     <Form {...form}>
@@ -78,6 +102,12 @@ export const ChatInput = ({ apiUrl, query, name, type }: ChatInputProps) => {
                     }`}
                     {...field}
                   />
+                  <div className="absolute top-7 right-20">
+                    <Trash
+                      onClick={handleDeleteAllMessages}
+                      className="cursor-pointer ml-auto w-6 h-6  text-zinc-500 hover:text-zinc-600 dark:hover:text-zinc-300 transition"
+                    />
+                  </div>
                   <div className="absolute top-7 right-8">
                     <EmojiPicker
                       onChange={(emoji: string) =>
