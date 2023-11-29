@@ -22,7 +22,7 @@
 
 ## 🧑‍💻 Members - Roles
 
-- **Nguyễn Thành Dũng - [LostArrows27](https://github.com/LostArrows27/)**
+- **Nguyễn Thành Dũng - [LostArrows27](https://github.com/LostArrows27/)**:
   - Authentication
   - Make database schema
   - Create server, invite to server
