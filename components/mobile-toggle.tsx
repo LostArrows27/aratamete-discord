@@ -1,4 +1,4 @@
-import { Menu } from "lucide-react";
+import { Menu, Phone } from "lucide-react";
 
 import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
 import { Button } from "./ui/button";
@@ -13,7 +13,7 @@ const MobileToggle = ({ serverId }: { serverId: string }) => {
           <Menu />
         </Button>
       </SheetTrigger>
-      <SheetContent side={"left"} className="flex gap-0 p-0 remove-button">
+      <SheetContent side={"left"} className="remove-button flex gap-0 p-0">
         <div className="w-[72px]">
           <NavigationSidebar />
         </div>
